@@ -59,3 +59,8 @@ bool Display::IsClosed()
 {
 	return m_IsClosed;
 }
+
+void Display::SwapBuffers()
+{
+	SDL_GL_SwapWindow(m_window);
+}

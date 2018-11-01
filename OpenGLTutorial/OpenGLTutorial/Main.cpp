@@ -26,8 +26,8 @@ int main(int argc, char** argv)
 		display.Clear(0.0F, 0.15F, 0.3F, 1.0F);
 		shader.Bind();
 		mesh.Draw();
-		cout << glGetError() << std::endl;
-		display.Update();
+
+		display.SwapBuffers();
 	}
 	return 0;
 }
