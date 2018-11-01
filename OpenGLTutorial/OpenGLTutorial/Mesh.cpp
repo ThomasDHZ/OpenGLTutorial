@@ -16,11 +16,6 @@ Mesh::Mesh(Vertex* vertices, unsigned int numVertices)
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
 
 	glBindVertexArray(0);
-
-	GLenum err;
-	while (!(err = glGetError())) {
-		std::cout << err;
-	}
 }
 Mesh::~Mesh()
 {
@@ -32,10 +27,4 @@ void Mesh::Draw()
 	glBindVertexArray(m_vertexArrayObject);
 	glDrawArrays(GL_TRIANGLES, 0, m_DrawCount);
 	glBindVertexArray(0);
-
-
-	GLenum err;
-	while (!(err = glGetError())) {
-		std::cout << err;
-	}
 }
