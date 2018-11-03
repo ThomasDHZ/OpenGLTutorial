@@ -11,11 +11,17 @@ class Vertex
 {
 	private:
 		vec3 Pos;
+		vec2 TextureCoordinates;
+
 	public:
-		Vertex(const vec3& pos);
-		vec3 GetPos()
+		Vertex(const vec3& pos, vec2& texCoordinates);
+		inline vec3* GetPos()
 		{
-			return Pos;
+			return &Pos;
+		}
+		inline vec2* GetTextureCoordinates()
+		{
+			return &TextureCoordinates;
 		}
 };
 

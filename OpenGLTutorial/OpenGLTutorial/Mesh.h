@@ -7,12 +7,15 @@
 #include <glm/glm.hpp>
 #include <GL/glew.h>
 
+using namespace std;
+
 class Mesh
 {
 	private:
 		enum
 		{
 			POSITION_VB,
+			TexCOORD_VB,
 			NUM_BUFFERS
 		};
 
@@ -22,6 +25,8 @@ class Mesh
 
 		Mesh(const Mesh& other) {}
 		Mesh& operator=(const Mesh& other) {}
+
+		void Debug_ShowMeshMemory();
 	public:
 		Mesh(Vertex* vertices, unsigned int numVertices);
 		virtual ~Mesh();
