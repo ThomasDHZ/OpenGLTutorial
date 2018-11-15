@@ -10,18 +10,26 @@ using namespace glm;
 class Vertex
 {
 	private:
-		vec3 Pos;
+		vec3 Position;
+		vec3 VertexColor;
 		vec2 TextureCoordinates;
 
 	public:
-		Vertex(const vec3& pos, vec2& texCoordinates);
-		inline vec3* GetPos()
+		Vertex(vec3 position, vec3 vertexcolor, vec2 texCoordinates);
+		Vertex(vec3 position, vec2 texCoordinates);
+		Vertex(vec3 position, vec3 vertexcolor);
+		
+		vec3 GetPosition()
 		{
-			return &Pos;
+			return Position;
 		}
-		inline vec2* GetTextureCoordinates()
+		vec3 GetVertexColor()
 		{
-			return &TextureCoordinates;
+			return VertexColor;
+		}
+		vec2 GetTextureCoordinates()
+		{
+			return TextureCoordinates;
 		}
 };
 

@@ -4,6 +4,22 @@
 
 Mesh::Mesh(Vertex* vertices, unsigned int numVertices)
 {
+	/*verticesz[0] = -0.5f;
+verticesz[1] = -0.5f;
+verticesz[2] = 0.0f;
+verticesz[3] = 0.5f;
+verticesz[4] = -0.5f;
+verticesz[5] = 0.0f;
+verticesz[6] = 0.0f;
+verticesz[7] = 0.5f;
+verticesz[8] = 0.0f;
+
+texpos[0] = 1.0F;
+texpos[1] = 0.0F;
+texpos[2] = 0.0F;
+texpos[3] = 0.0F;
+texpos[4] = 0.5F;
+texpos[5] = 1.0F;*/
 
 	float verticesz[] = {
 	-0.5f, -0.5f, 0.0f, // left  
@@ -17,7 +33,7 @@ Mesh::Mesh(Vertex* vertices, unsigned int numVertices)
 		 0.0F, 0.0F,
 		 0.5F, 1.0F
 	};
-
+	
 	cout << "Vertex Memory:" << endl;
 	for (int x = 0; x <= 8; x++)
 	{

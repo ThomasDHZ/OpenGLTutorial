@@ -18,7 +18,10 @@ class Mesh
 			TexCOORD_VB,
 			NUM_BUFFERS
 		};
-
+		//float testing = 0.0f;
+		//float verticesz[8];
+		//float texpos[5];
+		mat4x4 ModelMatrix;
 		GLuint m_vertexArrayObject;
 		GLuint m_vertexArrayBuffers[NUM_BUFFERS];
 		unsigned int m_DrawCount;
@@ -30,8 +33,6 @@ class Mesh
 	public:
 		Mesh(Vertex* vertices, unsigned int numVertices);
 		virtual ~Mesh();
-
 		void Draw();
-
 };
 #endif
