@@ -65,12 +65,12 @@ int main(int argc, char** argv)
 	};
 
 	Display display(800, 600, "OpenGL Engine");
-	Shader shader("C://Users//dhz//source//repos//OpenGLTutorial//res//Shader");
-	Texture texture("C://Users//dhz//source//repos//OpenGLTutorial//res//bricks.jpg");
-	Camera camera(vec3(0, 0, -3), 70.0F, (float)800 / (float)600, 0.01f, 1000.0f);
+	Shader shader("..//res//Shader");
+	Texture texture("..//res//bricks.jpg");
+	Camera camera(vec3(0, 0, -7), 70.0F, (float)800 / (float)600, 0.01f, 1000.0f);
 	Transform transform;
 	//Mesh mesh(vertices, sizeof(vertices)/sizeof(vertices[0]), indices, sizeof(indices) / sizeof(indices[0]));
-	Mesh mesh("C://Users//dhz//source//repos//OpenGLTutorial//res//monkey3.obj");
+	Mesh mesh("..//res//monkey3.obj");
 
 	float counter = 0.0f;
 	while (!display.IsClosed())

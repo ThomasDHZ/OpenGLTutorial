@@ -60,7 +60,6 @@ void Mesh::MeshLoader(const IndexedModel& Model)
 void Mesh::Draw()
 {
 	glBindVertexArray(m_vertexArrayObject);
-	//glDrawArrays(GL_TRIANGLES, 0, m_DrawCount);
 	glDrawElements(GL_TRIANGLES, m_DrawCount, GL_UNSIGNED_INT, 0);
 	glBindVertexArray(0);
 }
