@@ -4,6 +4,7 @@
 #define MESH_H
 
 #include "vertex.h"
+#include "OBJloader.h"
 #include <glm/glm.hpp>
 #include <GL/glew.h>
 
@@ -16,6 +17,8 @@ class Mesh
 		{
 			POSITION_VB,
 			TexCOORD_VB,
+			NORMAL_VB,
+			Index_VB,
 			NUM_BUFFERS
 		};
 		//float testing = 0.0f;
@@ -29,9 +32,10 @@ class Mesh
 		Mesh(const Mesh& other) {}
 		Mesh& operator=(const Mesh& other) {}
 
-		void Debug_ShowMeshMemory();
+		void MeshLoader(const IndexedModel& Model);
 	public:
-		Mesh(Vertex* vertices, unsigned int numVertices);
+		Mesh(const string& FileName);
+		Mesh(Vertex* vertices, unsigned int numVertices, unsigned int* indices, unsigned int numIndices);
 		virtual ~Mesh();
 		void Draw();
 };

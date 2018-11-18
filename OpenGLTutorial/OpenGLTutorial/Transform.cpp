@@ -3,8 +3,6 @@
 
 Transform::Transform(const vec3& position, const vec3& rotation, const vec3& scale)
 {
-	std::cout << addressof(position) << std::endl;
-	std::cout << addressof(Position) << std::endl;
 	Position = position;
 	Rotation = rotation;
 	Scale = scale;

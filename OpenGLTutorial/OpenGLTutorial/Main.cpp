@@ -12,33 +12,67 @@ using namespace std;
 
 int main(int argc, char** argv)
 {
-	vec3 pos1 = vec3(-0.5f, -0.5f, 0.0f);
-	vec3 pos2 = vec3(0.5f, -0.5f, 0.0f);
-	vec3 pos3 = vec3(0.0f, 0.5f, 0.0f);
-
-	vec2 Text1 = vec2(0, 0);
-	vec2 Text2 = vec2(0.5, 1);
-	vec2 Text3 = vec2(1, 0);
-
 	Vertex vertices[] =
 	{
-		Vertex(pos1, Text1),
-		Vertex(pos2, Text2),
-		Vertex(pos3, Text3)
+		Vertex(glm::vec3(-1, -1, -1), glm::vec2(1, 0), glm::vec3(0, 0, -1)),
+		Vertex(glm::vec3(-1, 1, -1), glm::vec2(0, 0), glm::vec3(0, 0, -1)),
+		Vertex(glm::vec3(1, 1, -1), glm::vec2(0, 1), glm::vec3(0, 0, -1)),
+		Vertex(glm::vec3(1, -1, -1), glm::vec2(1, 1), glm::vec3(0, 0, -1)),
+
+		Vertex(glm::vec3(-1, -1, 1), glm::vec2(1, 0), glm::vec3(0, 0, 1)),
+		Vertex(glm::vec3(-1, 1, 1), glm::vec2(0, 0), glm::vec3(0, 0, 1)),
+		Vertex(glm::vec3(1, 1, 1), glm::vec2(0, 1), glm::vec3(0, 0, 1)),
+		Vertex(glm::vec3(1, -1, 1), glm::vec2(1, 1), glm::vec3(0, 0, 1)),
+
+		Vertex(glm::vec3(-1, -1, -1), glm::vec2(0, 1), glm::vec3(0, -1, 0)),
+		Vertex(glm::vec3(-1, -1, 1), glm::vec2(1, 1), glm::vec3(0, -1, 0)),
+		Vertex(glm::vec3(1, -1, 1), glm::vec2(1, 0), glm::vec3(0, -1, 0)),
+		Vertex(glm::vec3(1, -1, -1), glm::vec2(0, 0), glm::vec3(0, -1, 0)),
+
+		Vertex(glm::vec3(-1, 1, -1), glm::vec2(0, 1), glm::vec3(0, 1, 0)),
+		Vertex(glm::vec3(-1, 1, 1), glm::vec2(1, 1), glm::vec3(0, 1, 0)),
+		Vertex(glm::vec3(1, 1, 1), glm::vec2(1, 0), glm::vec3(0, 1, 0)),
+		Vertex(glm::vec3(1, 1, -1), glm::vec2(0, 0), glm::vec3(0, 1, 0)),
+
+		Vertex(glm::vec3(-1, -1, -1), glm::vec2(1, 1), glm::vec3(-1, 0, 0)),
+		Vertex(glm::vec3(-1, -1, 1), glm::vec2(1, 0), glm::vec3(-1, 0, 0)),
+		Vertex(glm::vec3(-1, 1, 1), glm::vec2(0, 0), glm::vec3(-1, 0, 0)),
+		Vertex(glm::vec3(-1, 1, -1), glm::vec2(0, 1), glm::vec3(-1, 0, 0)),
+
+		Vertex(glm::vec3(1, -1, -1), glm::vec2(1, 1), glm::vec3(1, 0, 0)),
+		Vertex(glm::vec3(1, -1, 1), glm::vec2(1, 0), glm::vec3(1, 0, 0)),
+		Vertex(glm::vec3(1, 1, 1), glm::vec2(0, 0), glm::vec3(1, 0, 0)),
+		Vertex(glm::vec3(1, 1, -1), glm::vec2(0, 1), glm::vec3(1, 0, 0)),
 	};
 
-	Display display(800, 600, "Helloworld");
-	Shader shader("C://Users//dhz//source//repos//OpenGLEngine//OpenGLEngine//Shader");
+	unsigned int indices[] = { 0, 1, 2,
+							  0, 2, 3,
+
+							  6, 5, 4,
+							  7, 6, 4,
+
+							  10, 9, 8,
+							  11, 10, 8,
+
+							  12, 13, 14,
+							  12, 14, 15,
+
+							  16, 17, 18,
+							  16, 18, 19,
+
+							  22, 21, 20,
+							  23, 22, 20
+	};
+
+	Display display(800, 600, "OpenGL Engine");
+	Shader shader("C://Users//dhz//source//repos//OpenGLTutorial//res//Shader");
 	Texture texture("C://Users//dhz//source//repos//OpenGLTutorial//res//bricks.jpg");
-	Camera camera(vec3(0, 0, -2), 70.0F, (float)800 / (float)600, 0.01f, 1000.0f);
+	Camera camera(vec3(0, 0, -3), 70.0F, (float)800 / (float)600, 0.01f, 1000.0f);
 	Transform transform;
-	Mesh mesh(vertices, sizeof(vertices) / sizeof(vertices[0]));
+	//Mesh mesh(vertices, sizeof(vertices)/sizeof(vertices[0]), indices, sizeof(indices) / sizeof(indices[0]));
+	Mesh mesh("C://Users//dhz//source//repos//OpenGLTutorial//res//monkey3.obj");
 
 	float counter = 0.0f;
-
-
-
-
 	while (!display.IsClosed())
 	{
 		display.Clear(0.0F, 0.15F, 0.3F, 1.0F);
@@ -46,11 +80,11 @@ int main(int argc, char** argv)
 		float sinCounter = sinf(counter);
 		float cosCounter = cosf(counter);
 
-		transform.GetPosition().x = sinf(sinCounter);
-		transform.GetPosition().z = sinf(cosCounter);
-		transform.GetRotation().x = counter * 50;
-		transform.GetRotation().y = counter * 50;
-		transform.GetRotation().z = counter * 50;
+		//transform.GetPosition().x = sinf(sinCounter/5);
+		//transform.GetPosition().z = sinf(cosCounter/5);
+		//transform.GetRotation().x = counter /5000;
+		transform.GetRotation().y = counter / 50;
+		//transform.GetRotation().z = counter /5000;
 
 
 		shader.Bind();
@@ -58,7 +92,6 @@ int main(int argc, char** argv)
 		shader.Update(transform, camera);
 		mesh.Draw();
 		display.Update();
-		cout << glGetString(GL_VERSION) << endl;
 		counter++;
 	}
 	return 0;
