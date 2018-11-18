@@ -20,6 +20,7 @@ class Shader
 		enum
 		{
 			TRANSFORM_U,
+			LIGHTING_U,
 			NUM_UNIFORMS
 		};
 

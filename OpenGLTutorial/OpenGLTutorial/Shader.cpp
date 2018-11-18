@@ -21,6 +21,7 @@ Shader::Shader(const string& fileName)
 	CheckShaderError(m_program, GL_VALIDATE_STATUS, true, "Error: Shader Failed to validate: ");
 
 	m_uniform[TRANSFORM_U] = glGetUniformLocation(m_program, "transform");
+//	m_uniform[LIGHTING_U] = glGetUniformLocation(m_program, "lightPos0");
 }
 
 Shader::~Shader()
@@ -107,6 +108,16 @@ void Shader::Bind()
 }
 void Shader::Update(const Transform& transform, const Camera& camera)
 {
+
+	int AmbientLightColor = glGetUniformLocation(m_program, "AmbientLight");
+	int DiffuseColor = glGetUniformLocation(m_program, "DiffuseColor");
+
+	glUniform4f(AmbientLightColor, 0.2f, 0.2f, 0.2f, 1.0f);
+	glUniform3f(DiffuseColor, 0.9f, 0.9f, 0.9f);
+
+
+	vec3 lightPos0(0.0f, 0.0f, 2.0f);
 	mat4 model = camera.GetViewProjection() * transform.GetModel();
 	glUniformMatrix4fv(m_uniform[TRANSFORM_U], 1, GL_FALSE, &model[0][0]);
+	//glUniformMatrix3fv(m_uniform[LIGHTING_U], 1, GL_FALSE, glm);
 }
