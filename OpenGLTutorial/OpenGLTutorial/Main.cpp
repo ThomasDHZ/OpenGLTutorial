@@ -67,7 +67,7 @@ int main(int argc, char** argv)
 	Display display(800, 600, "OpenGL Engine");
 	Shader shader("..//res//Shader");
 	Texture texture("..//res//bricks.jpg");
-	Camera camera(vec3(0, 0, -7), 70.0F, (float)800 / (float)600, 0.01f, 1000.0f);
+	Camera camera(vec3(0, 0, -4), 70.0F, (float)800 / (float)600, 0.01f, 1000.0f);
 	Transform transform;
 	//Mesh mesh(vertices, sizeof(vertices)/sizeof(vertices[0]), indices, sizeof(indices) / sizeof(indices[0]));
 	Mesh mesh("..//res//monkey3.obj");
@@ -87,11 +87,12 @@ int main(int argc, char** argv)
 		//transform.GetRotation().z = counter /5000;
 
 
+	
 		shader.Bind();
 		texture.Bind(0);
 		shader.Update(transform, camera);
 		mesh.Draw();
-		display.Update();
+		display.Update(camera);
 		counter++;
 	}
 	return 0;

@@ -3,6 +3,7 @@
 #ifndef DISPLAY_H
 #define DISPLAY_H
 
+#include "Camera.h"
 #include <SDL2/SDL.h>
 #include <string>
 
@@ -15,7 +16,7 @@ class Display
 		virtual ~Display();
 
 		void Clear(float r, float g, float b, float a);
-		void Update();
+		void Update(Camera camera);
 		bool IsClosed();
 		void SwapBuffers();
 

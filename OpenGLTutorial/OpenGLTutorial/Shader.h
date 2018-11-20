@@ -28,6 +28,9 @@ class Shader
 		GLuint m_shaders[NUM_SHADER];
 		GLuint m_uniform[NUM_UNIFORMS];
 
+		float counter;
+		float sinCounter;
+
 		mat4 ModelMatrix;
 		string LoadShader(const string& fileName);
 		GLuint CreateShader(const string& text, GLenum ShaderType);
