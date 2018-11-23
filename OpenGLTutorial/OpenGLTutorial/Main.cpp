@@ -7,6 +7,8 @@
 #include "Texture.h"
 #include "Transform.h"
 #include "Camera.h"
+#include "LightManager.h"
+
 
 using namespace std;
 
@@ -69,6 +71,9 @@ int main(int argc, char** argv)
 	Texture texture("..//res//bricks.jpg");
 	Camera camera(vec3(0, 0, -4), 70.0F, (float)800 / (float)600, 0.01f, 1000.0f);
 	Transform transform;
+	LightManager lightManager;
+	//lightManager.AddLight(Light(vec3(0.0f, 0.0f, 1.0f)));
+	lightManager.AddLight(Light(vec3(0.0f, 0.0f, 1.0f), vec3(0.8f, 0.8f, 0.8f)));
 	//Mesh mesh(vertices, sizeof(vertices)/sizeof(vertices[0]), indices, sizeof(indices) / sizeof(indices[0]));
 	Mesh mesh("..//res//monkey3.obj");
 
@@ -86,12 +91,21 @@ int main(int argc, char** argv)
 		transform.GetRotation().y = counter / 50;
 		//transform.GetRotation().z = counter /5000;
 
+		lightManager.SetAmbientLight(0.2f,0.2f,0.2f,1.0f);
+
+		Light light = lightManager.GetLight(0);
+		//lightManager.UpdateLightPosition(0, light.GetLightPosition().x, sinCounter, light.GetLightPosition().z);
+		lightManager.UpdateLightColor(0, light.GetLightColor().y, sinCounter, sinCounter);
+		//vec3 GetLightPos = lightManager.GetLight(0).GetLightPosition();
+		//lightManager.GetLight(0).SetLightPosition(vec3(GetLightPos.x, sinCounter, GetLightPos.z));
+	    //lightManager.GetLight(0).SetLightColor(vec3(sinCounter, 0.0f, 0.0f));
 
 	
 		shader.Bind();
 		texture.Bind(0);
+		lightManager.Update(shader);
 		shader.Update(transform, camera);
-		mesh.Draw();
+		mesh.Draw(shader);
 		display.Update(camera);
 		counter++;
 	}

@@ -19,7 +19,9 @@ class Shader
 
 		enum
 		{
-			TRANSFORM_U,
+			CAMERAMATRIX_U,
+			VIEWMATRIX_U,
+			MODEL_TRANSFORM_U,
 			LIGHTING_U,
 			NUM_UNIFORMS
 		};
@@ -36,8 +38,6 @@ class Shader
 		GLuint CreateShader(const string& text, GLenum ShaderType);
 		void CheckShaderError(GLuint shader, GLuint flag, bool isProgram, const string& errorMessage);
 
-		Shader(const Shader& other) {}
-		Shader& operator=(const Shader& other) {}
 	public:
 		Shader(const string& fileNam);
 		void Bind();
@@ -55,6 +55,8 @@ class Shader
 		{
 			return glGetAttribLocation(m_program, Variable);
 		}
+		void SetVec3f(const GLchar* IDLocation, GLfloat x, GLfloat y, GLfloat z);
+		void SetVec4f(const GLchar* IDLocation, GLfloat x, GLfloat y, GLfloat z, GLfloat w);
 
 		virtual ~Shader();
 

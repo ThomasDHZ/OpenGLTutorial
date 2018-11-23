@@ -5,6 +5,7 @@
 
 #include "vertex.h"
 #include "OBJloader.h"
+#include "Shader.h"
 #include <glm/glm.hpp>
 #include <GL/glew.h>
 
@@ -24,7 +25,12 @@ class Mesh
 		//float testing = 0.0f;
 		//float verticesz[8];
 		//float texpos[5];
-		mat4x4 ModelMatrix;
+		mat4 ModelMatrix;
+
+		vec3 Position;
+		vec3 Rotation;
+		vec3 Scale;
+
 		GLuint m_vertexArrayObject;
 		GLuint m_vertexArrayBuffers[NUM_BUFFERS];
 		unsigned int m_DrawCount;
@@ -33,10 +39,11 @@ class Mesh
 		Mesh& operator=(const Mesh& other) {}
 
 		void MeshLoader(const IndexedModel& Model);
+		void UpdateModelMatrix();
 	public:
 		Mesh(const string& FileName);
 		Mesh(Vertex* vertices, unsigned int numVertices, unsigned int* indices, unsigned int numIndices);
 		virtual ~Mesh();
-		void Draw();
+		void Draw(Shader shader);
 };
 #endif
